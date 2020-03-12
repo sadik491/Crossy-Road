@@ -59,7 +59,7 @@ public class playerController : MonoBehaviour
         }
 
 
-        if (transform.position != new Vector3 (curPosition.x, transform.position.y, curPosition.z) + nextDir)
+        /*if (transform.position != new Vector3 (curPosition.x, transform.position.y, curPosition.z) + nextDir)
         {
            transform.position = Vector3.MoveTowards(transform.position, new Vector3(curPosition.x, transform.position.y, curPosition.z) + nextDir, speed*Time.deltaTime);
            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(Quaternion.Euler(0, rotationOffset, 0) * nextDir), speedRot * Time.deltaTime);
@@ -83,7 +83,7 @@ public class playerController : MonoBehaviour
                 nextDir.z = Input.GetAxisRaw("Vertical");
                 Move();
             }
-        }
+        }*/
         
     }
 
@@ -98,26 +98,31 @@ public class playerController : MonoBehaviour
 
         if (Mathf.Abs(distance.x) > Mathf.Abs(distance.y))
         {
-            Debug.Log("Horizontal Swipe");
+            //Debug.Log("Horizontal");
             if (distance.x < 0)
             {
-                Debug.Log("left Swipe");
+                rb.AddForce(-100, jumpForce, 0);
+                //Debug.Log("left Swipe");
+
             }
             if (distance.x > 0)
             {
-                Debug.Log("Right Swipe");
+                rb.AddForce(100, jumpForce, 0);
+                //Debug.Log("Right Swipe");
             }
         }
         else if (Mathf.Abs(distance.x) < Mathf.Abs(distance.y))
         {
-            Debug.Log("Vertical Swipe");
+            //Debug.Log("Vertical");
             if (distance.y < 0)
             {
-                Debug.Log("down Swipe");
+                rb.AddForce(0, jumpForce, -100);
+                //Debug.Log("down Swipe");
             }
             if (distance.y > 0)
             {
-                Debug.Log("up Swipe");
+                rb.AddForce(0, jumpForce, 100);
+                //Debug.Log("up Swipe");
             }
         }
     }
